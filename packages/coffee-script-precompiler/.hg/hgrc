@@ -1,2 +1,0 @@
-[paths]
-default = git+ssh://git@github.com/nrw/coffee-script-precompiler

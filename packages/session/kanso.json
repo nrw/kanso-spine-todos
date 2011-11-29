@@ -1,6 +1,7 @@
 {
     "name": "session",
     "version": "0.0.8",
+    "categories": ["couchdb"],
     "description": "Utilities for managing the current user's session, including login, logout etc",
     "modules": "session.js",
     "dependencies": {

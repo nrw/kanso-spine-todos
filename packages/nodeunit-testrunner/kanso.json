@@ -1,6 +1,7 @@
 {
     "name": "nodeunit-testrunner",
     "version": "0.0.2",
+    "categories": ["testing"],
     "description": "Provides a basic interface for running Nodeunit test suites in the browser",
     "modules": "nodeunit-testrunner",
     "attachments": "static",

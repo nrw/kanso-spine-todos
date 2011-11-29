@@ -1106,16 +1106,19 @@ exports.handle = function (method, url, data) {
                 exports.runShowBrowser(
                     req, req.path[1], req.path.slice(2).join('/'), after
                 );
+                window.scrollTo(0, 0);
             }
             else if (req.path[0] === '_list') {
                 exports.runListBrowser(
                     req, req.path[1], req.path.slice(2).join('/'), after
                 );
+                window.scrollTo(0, 0);
             }
             else if (req.path[0] === '_update') {
                 exports.runUpdateBrowser(
                     req, req.path[1], req.path.slice(2).join('/'), after
                 );
+                window.scrollTo(0, 0);
             }
             else {
                 console.log('Unknown rewrite target: ' + req.path.join('/'));
