@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>{title}</title>
+  <link rel="stylesheet" href="{baseURL}/static/style/bootstrap.min.css" type="text/css">
+</head>
+<body>
+<div class="container">
+  <section>
+    
+    <div id="content">
+
+      <div id="views">
+        <div id="tasks">
+          <h1>Todos</h1>
+          
+          <form>
+            <input type="text" placeholder="What needs to be done?">
+          </form>
+          
+          <div class="items"></div>
+          
+          <footer>
+            <a class="clear">Clear completed</a>
+            <div class="count"><span class="countVal"></span> left</div>
+          </footer>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+</div>
+
+{>"template_stuff.html"/}
+<script src="{baseURL}/static/js/json2.js" type="text/javascript" charset="utf-8"></script>
+<script src="{baseURL}/static/js/jquery-1.5.2.min.js"></script>
+
+<script src="{baseURL}/modules.js"></script>
+
+<script src="{baseURL}/static/js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="{baseURL}/static/js/spine.js" type="text/javascript" charset="utf-8"></script>
+<script src="{baseURL}/static/js/local.js" type="text/javascript" charset="utf-8"></script>
+<script src="{baseURL}/static/js/ajax.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+
+  var exports = this;
+  jQuery(function(){
+    var App = require("lib/index");
+    exports.app = new App({el: $("body")});
+  });
+
+</script>
+
+</body>
+</html>
