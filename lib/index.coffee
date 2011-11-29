@@ -1,19 +1,26 @@
 $ = jQuery
 
+
+# Overrides "toJSON" of Models to make them work with couch.
 Spine.Model.include toJSON: ->
+  # The first part is copied from the default toJSON method in spine
   result = {}
   for key in @constructor.attributes when key of @
     if typeof @[key] is 'function'
       result[key] = @[key]()
     else
       result[key] = @[key]
+  # Set the id as _id
   result._id = @id if @id
+  # Hard code a type so our "task" view works
   result.type = "task"
+  # just like the default, return the result.
   result
 
 class Task extends Spine.Model
   @configure "Task", "name", "done"
   
+  # Ajax storage instead of Local Storage
   @extend Spine.Model.Ajax
 
   # Choose exactly one of the following lines:
@@ -92,8 +99,8 @@ class TaskApp extends Spine.Controller
     
   
   addOne: (task) =>
+    # This line prints the JSON of retrieved tasks
     @log JSON.stringify(task.toJSON())
-    # task.toJSON()
     view = new Tasks(item: task)
     @items.append(view.render().el)
   
@@ -119,11 +126,3 @@ class TaskApp extends Spine.Controller
       @clear.hide()
 
 module.exports = TaskApp
-
-# <script type="text/javascript" charset="utf-8">
-#   var exports = this;
-#   jQuery(function(){
-#     var App = require("lib/index");
-#     exports.app = new App({el: $("#content")});      
-#   });
-# </script>
