@@ -3,10 +3,10 @@ utils = require("duality/utils")
 
 require("spine/couch-ajax")
 
-
+templates = require("duality/templates")
 
 class Task extends Spine.Model
-  @configure "Task", "name", "done"
+  @configure "Task", "name", "done", "_rev"
   
   # Ajax storage instead of Local Storage
   @extend Spine.Model.CouchAjax
@@ -45,6 +45,7 @@ class Tasks extends Spine.Controller
     @item.bind("destroy", @release)
   
   render: =>
+    #console.log @item
     @replace($("#taskTemplate").tmpl(@item))
     @
   
@@ -56,7 +57,7 @@ class Tasks extends Spine.Controller
     @item.destroy()
   
   edit: ->
-    @log @item
+    #@log @item
     @el.addClass("editing")
     @input.focus()
   
@@ -88,8 +89,8 @@ class TaskApp extends Spine.Controller
   
   addOne: (task) =>
     # This line prints the JSON of retrieved tasks
-    @log JSON.stringify(task.toJSON())
-    @log task.url()
+    #@log JSON.stringify(task.toJSON())
+    #@log task.url()
     view = new Tasks(item: task)
     @items.append(view.render().el)
   

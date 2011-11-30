@@ -4,7 +4,7 @@
     "description": "example app connecting spine to kanso",
     "load": "lib/app",
     "modules": ["lib"],
-    "attachments": "static",
+    "attachments": ["static"],
     
     "duality": { "base_template": "base.html" },
     "dust": { "templates": "templates" },
