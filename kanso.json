@@ -27,6 +27,7 @@
         "duality-dust": null,
         "nodeunit": null,
         "nodeunit-testrunner": null,
-        "spine": null
+        "spine": null,
+        "spine-adapter": null
     }
 }

@@ -1,34 +1,23 @@
 $ = jQuery
+utils = require("duality/utils")
+
+require("spine/couch-ajax")
 
 
-# Overrides "toJSON" of Models to make them work with couch.
-Spine.Model.include toJSON: ->
-  # The first part is copied from the default toJSON method in spine
-  result = {}
-  for key in @constructor.attributes when key of @
-    if typeof @[key] is 'function'
-      result[key] = @[key]()
-    else
-      result[key] = @[key]
-  # Set the id as _id
-  result._id = @id if @id
-  # Hard code a type so our "task" view works
-  result.type = "task"
-  # just like the default, return the result.
-  result
 
 class Task extends Spine.Model
   @configure "Task", "name", "done"
   
   # Ajax storage instead of Local Storage
-  @extend Spine.Model.Ajax
+  @extend Spine.Model.CouchAjax
 
   # Choose exactly one of the following lines:
   # Uncomment this line to read tasks
-  @url: "/tasks/_design/tasks/_rewrite/tasks"
+  @url: "#{utils.getBaseURL()}/#{@className.toLowerCase()}"
+    # "/kanso-spine-tasks/_design/tasks/_rewrite/tasks"
   
   # Uncomment this line to save tasks
-  # @url: "/tasks"
+  # @url: "/kanso-spine-tasks"
 
   @active: ->
     @select (item) -> !item.done
@@ -91,7 +80,6 @@ class TaskApp extends Spine.Controller
   
   constructor: ->
     super
-    @log "taskapp constructor"
     Task.bind("create",  @addOne)
     Task.bind("refresh", @addAll)
     Task.bind("refresh change", @renderCount)
@@ -101,6 +89,7 @@ class TaskApp extends Spine.Controller
   addOne: (task) =>
     # This line prints the JSON of retrieved tasks
     @log JSON.stringify(task.toJSON())
+    @log task.url()
     view = new Tasks(item: task)
     @items.append(view.render().el)
   

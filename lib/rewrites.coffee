@@ -2,7 +2,8 @@ module.exports = [
   # static
   from: "/static/*"
   to: "static/*"
-
+,
+  require('spine/rewrites')
 , # spine static 
   from: "/spine/lib/*"
   to: "spine/lib/*"
@@ -22,4 +23,3 @@ module.exports = [
   from: "*"
   to: "_show/not_found"
  ]
-

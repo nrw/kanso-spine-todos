@@ -1,4 +1,4 @@
-exports.tasks = 
+
+exports.docs_by_modelname = 
   map: (doc) ->
-    if doc.type is "task"
-      emit [doc._id], null
+    emit [doc.modelname], null
