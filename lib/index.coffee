@@ -45,7 +45,7 @@ class Tasks extends Spine.Controller
     @item.bind("destroy", @release)
   
   render: =>
-    #console.log @item
+    console.log @item.name
     @replace($("#taskTemplate").tmpl(@item))
     @
   
