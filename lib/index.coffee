@@ -43,10 +43,13 @@ class Tasks extends Spine.Controller
     super
     @item.bind("update",  @render)
     @item.bind("destroy", @release)
-  
+
+  template: (item) ->
+    templates.render("template_stuff.html", {}, item)
+
   render: =>
-    console.log @item.name
-    @replace($("#taskTemplate").tmpl(@item))
+    console.log @item
+    @html(@template(@item))
     @
   
   toggle: ->
