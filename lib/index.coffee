@@ -6,7 +6,7 @@ require("spine/couch-ajax")
 templates = require("duality/templates")
 
 class Task extends Spine.Model
-  @configure "Task", "name", "done", "_rev"
+  @configure "Task", "name", "done"
   
   # Ajax storage instead of Local Storage
   @extend Spine.Model.CouchAjax
@@ -48,8 +48,7 @@ class Tasks extends Spine.Controller
     templates.render("template_stuff.html", {}, item)
 
   render: =>
-    console.log @item
-    @html(@template(@item))
+    @replace($(@template(@item)))
     @
   
   toggle: ->
@@ -60,7 +59,6 @@ class Tasks extends Spine.Controller
     @item.destroy()
   
   edit: ->
-    #@log @item
     @el.addClass("editing")
     @input.focus()
   

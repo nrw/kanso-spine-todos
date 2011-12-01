@@ -6,10 +6,6 @@
   <link rel="stylesheet" href="{baseURL}/static/css/application.css" type="text/css">
 </head>
 <body>
-<div class="container">
-  <section>
-    
-    <div id="content">
 
       <div id="views">
         <div id="tasks">
@@ -28,10 +24,6 @@
         </div>
       </div>
 
-    </div>
-
-  </section>
-</div>
 
 
 <script src="{baseURL}/static/js/json2.js" type="text/javascript" charset="utf-8"></script>
@@ -52,7 +44,7 @@
   var exports = this;
   jQuery(function(){
     var App = require("lib/index");
-    exports.app = new App({el: $("body")});
+    exports.app = new App({el: $("#tasks")});
   });
 
 </script>
