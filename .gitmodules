@@ -1,0 +1,6 @@
+[submodule "packages/spine"]
+	path = packages/spine
+	url = git@github.com:nrw/spine.git
+[submodule "packages/spine-adapter"]
+	path = packages/spine-adapter
+	url = git@github.com:nrw/spine-adapter.git
