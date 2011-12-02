@@ -1,23 +1,14 @@
 $ = jQuery
 utils = require("duality/utils")
 
-require("spine/couch-ajax")
+require("spine-adapter/couch-ajax")
 
 templates = require("duality/templates")
 
 class Task extends Spine.Model
   @configure "Task", "name", "done"
   
-  # Ajax storage instead of Local Storage
   @extend Spine.Model.CouchAjax
-
-  # Choose exactly one of the following lines:
-  # Uncomment this line to read tasks
-  @url: "#{utils.getBaseURL()}/#{@className.toLowerCase()}"
-    # "/kanso-spine-tasks/_design/tasks/_rewrite/tasks"
-  
-  # Uncomment this line to save tasks
-  # @url: "/kanso-spine-tasks"
 
   @active: ->
     @select (item) -> !item.done

@@ -3,17 +3,7 @@ module.exports = [
   from: "/static/*"
   to: "static/*"
 ,
-  require('spine/rewrites')
-, # spine static 
-  from: "/spine/lib/*"
-  to: "spine/lib/*"
-
-, # get tasks
-  from: "/tasks"
-  to: "_list/tasks/tasks"
-  query:
-    include_docs: "true"
-    format: "json"
+  require('spine-adapter/rewrites')
 
 , # show root
   from: "/"
