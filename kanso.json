@@ -18,16 +18,10 @@
         "settings": null,
         "attachments": null,
         "properties": null,
-        "underscore": null,
-        "couchtypes": null,
-        "duality-contrib-session": null,
         "coffee-script-precompiler": null,
         "dust": null,
         "duality": null,
         "duality-dust": null,
-        "nodeunit": null,
-        "nodeunit-testrunner": null,
-        "spine": null,
         "spine-adapter": null
     }
 }

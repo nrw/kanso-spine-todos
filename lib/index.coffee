@@ -1,4 +1,4 @@
-$ = jQuery
+$ = window.jQuery
 utils = require("duality/utils")
 
 require("spine-adapter/couch-ajax")
@@ -80,9 +80,6 @@ class TaskApp extends Spine.Controller
     
   
   addOne: (task) =>
-    # This line prints the JSON of retrieved tasks
-    #@log JSON.stringify(task.toJSON())
-    #@log task.url()
     view = new Tasks(item: task)
     @items.append(view.render().el)
   

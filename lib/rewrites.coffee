@@ -2,7 +2,8 @@ module.exports = [
   # static
   from: "/static/*"
   to: "static/*"
-,
+
+, # spine
   require('spine-adapter/rewrites')
 
 , # show root
