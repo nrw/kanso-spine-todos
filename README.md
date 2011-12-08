@@ -12,7 +12,7 @@ cd kanso
 make && sudo make install
 ```
 
-Clone this app and fetch dependencies
+Clone this app and install dependencies
 
 ```bash
 git clone https://github.com/nrw/kanso-spine-todos.git
