@@ -17,7 +17,7 @@ Clone this app and fetch dependencies
 ```bash
 git clone https://github.com/nrw/kanso-spine-todos.git
 cd kanso-spine-todos
-kanso fetch
+kanso install
 ```
 
 Push the app to CouchDB
