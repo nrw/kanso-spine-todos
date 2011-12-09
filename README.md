@@ -4,10 +4,10 @@ These instructions assume you already have an instance of CouchDB running on loc
 
 ## How to run this example:
 
-Install the `dev` branch of [Kanso](http://kansojs.org/)
+Install the `dev` branch of [Kanso](http://kan.so)
 
 ```bash
-git clone https://github.com/caolan/kanso.git -b dev
+git clone https://github.com/kanso/kanso.git
 cd kanso
 make && sudo make install
 ```
