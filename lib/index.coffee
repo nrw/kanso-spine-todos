@@ -88,16 +88,24 @@ class TaskApp extends Spine.Controller
     q = include_docs: yes
       
     appdb.changes q, (err, resp) =>
-      for doc in resp?.results
-        if doc.doc?.modelname is "task"
-          try
-            obj = Task.find( doc.doc._id )
-            if doc.deleted
-              obj.destroy()
-            else
-              Task.refresh( doc.doc ) unless obj._rev is doc.doc._rev
-          catch e
-            Task.refresh( doc.doc ) unless doc.deleted
+      Spine.CouchAjax.disable ->
+        for doc in resp?.results
+          if doc.doc?.modelname is "task"
+            atts = doc.doc
+            atts.id = atts._id unless atts.id
+            try
+              obj = Task.find( atts.id )
+              console.log(" ID #{atts.id} found" )
+              if doc.deleted
+                obj.destroy()
+                console.log(" ID #{atts.id} destroyed" )
+              else
+                unless obj._rev is atts._rev
+                  Task.update( atts.id, atts )
+                  console.log(" ID #{atts.id} updated" )
+            catch e
+              Task.create( atts ) unless doc.deleted
+              console.log(" ID #{atts.id} created" )
       yes
     
   addOne: (task) =>
