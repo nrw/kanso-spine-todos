@@ -1,6 +1,5 @@
 $ = window.jQuery
 utils = require("duality/utils")
-db    = require("db")
 {_}   = require("underscore")
 
 require("spine-adapter/couch-ajax")
@@ -8,7 +7,7 @@ require("spine-adapter/couch-ajax")
 templates = require("duality/templates")
 
 class Task extends Spine.Model
-  @configure "Task", "name", "done", "_rev"
+  @configure "Task", "name", "done"
   
   @extend Spine.Model.CouchAjax
 
@@ -79,34 +78,6 @@ class TaskApp extends Spine.Controller
     Task.bind("refresh", @addAll)
     Task.bind("refresh change", @renderCount)
     Task.fetch()
-    @db_changes()
-    
-  
-  db_changes: ->
-    appdb = db.use(require('duality/core').getDBURL())
-    
-    q = include_docs: yes
-      
-    appdb.changes q, (err, resp) =>
-      Spine.CouchAjax.disable ->
-        for doc in resp?.results
-          if doc.doc?.modelname is "task"
-            atts = doc.doc
-            atts.id = atts._id unless atts.id
-            try
-              obj = Task.find( atts.id )
-              console.log(" ID #{atts.id} found" )
-              if doc.deleted
-                obj.destroy()
-                console.log(" ID #{atts.id} destroyed" )
-              else
-                unless obj._rev is atts._rev
-                  Task.update( atts.id, atts )
-                  console.log(" ID #{atts.id} updated" )
-            catch e
-              Task.create( atts ) unless doc.deleted
-              console.log(" ID #{atts.id} created" )
-      yes
     
   addOne: (task) =>
     view = new Tasks(item: task)
