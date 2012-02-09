@@ -40,12 +40,13 @@ class Tasks extends Spine.Controller
     templates.render("template_stuff.html", {}, item)
 
   render: =>
-    @replace($(@template(@item)))
+    @replace($(@template(Task.find(@item.id))))
     @
   
   toggle: ->
-    @item.done = !@item.done
-    @item.save()
+    obj = Task.find(@item.id)
+    obj.done = !@item.done
+    obj.save()
   
   remove: ->
     @item.destroy()
