@@ -1,5 +1,6 @@
 $ = window.jQuery
 utils = require("duality/utils")
+{_}   = require("underscore")
 
 require("spine-adapter/couch-ajax")
 
@@ -39,12 +40,13 @@ class Tasks extends Spine.Controller
     templates.render("template_stuff.html", {}, item)
 
   render: =>
-    @replace($(@template(@item)))
+    @replace($(@template(Task.find(@item.id))))
     @
   
   toggle: ->
-    @item.done = !@item.done
-    @item.save()
+    obj = Task.find(@item.id)
+    obj.done = !@item.done
+    obj.save()
   
   remove: ->
     @item.destroy()
@@ -78,7 +80,6 @@ class TaskApp extends Spine.Controller
     Task.bind("refresh change", @renderCount)
     Task.fetch()
     
-  
   addOne: (task) =>
     view = new Tasks(item: task)
     @items.append(view.render().el)
@@ -99,7 +100,7 @@ class TaskApp extends Spine.Controller
     @count.text(active)
     
     inactive = Task.done().length
-    if inactive 
+    if inactive
       @clear.show()
     else
       @clear.hide()
