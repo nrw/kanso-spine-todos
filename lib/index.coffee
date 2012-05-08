@@ -1,4 +1,5 @@
 $ = window.jQuery
+Spine = require("spine/core")
 utils = require("duality/utils")
 {_}   = require("underscore")
 
